@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-import 'package:selforder_food/MyWidget/new_navbar.dart';
 import 'package:selforder_food/cart.dart';
 import 'package:selforder_food/hom3.dart';
 import 'package:selforder_food/ipdata.dart';
@@ -13,26 +12,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
-
-  @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-
 
   @override
 
   Widget build(BuildContext context) {
+    Provider.of<Profileprovider>(context,listen: false).getUser(context);
     Provider.of<Profileprovider>(context,listen: false).userCrenditails();
     return Scaffold(
 
       backgroundColor: Color(0xFF232227),
       appBar: AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: Center(child: Text("Profile",style: TextStyle(fontSize: 30),)),
+        title: Center(child: Text("Profile",style: Theme.of(context).textTheme.headline4),),
       ),
       body: FutureBuilder(
         future: Provider.of<Profileprovider>(context ,listen: false).getUser(context),
@@ -55,7 +48,8 @@ class _ProfileState extends State<Profile> {
                           color: Colors.orangeAccent,
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: NetworkImage("${ipData.ip}/${ipData.image2}/${snapshot.data["data"]["Photo"]}")
+                              image: NetworkImage("${ipData.ip}/${ipData.image2}/${snapshot.data["data"]["Photo"]}"),
+                            fit: BoxFit.fill
                           )
                       ),
                     ),

@@ -4,27 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:selforder_food/ipdata.dart';
+import 'package:selforder_food/provider/homeprovider.dart';
 import 'package:selforder_food/singleview.dart';
 
-class Drinks extends StatefulWidget {
+class Drinks extends StatelessWidget {
   const Drinks({Key? key}) : super(key: key);
 
-  @override
-  State<Drinks> createState() => _DrinksState();
-}
-
-class _DrinksState extends State<Drinks> {
-  Future<dynamic> drinksView()async{
-    Response response=await get(Uri.parse("http://192.168.98.135/php/self_order/API/drinks_view_api.php"));
-    if(response.statusCode == 200){
-      var data=jsonDecode(response.body);
-      var result= data;
-      print(result);
-      return result;
-
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +19,7 @@ class _DrinksState extends State<Drinks> {
 
 
       body: FutureBuilder(
-          future: drinksView(),
+          future: Provider.of<Homeprovider>(context,listen: false).drinksView(),
           builder: (context,AsyncSnapshot snapshot) {
             if(snapshot.connectionState==ConnectionState.waiting){
               return Center(

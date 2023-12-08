@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:selforder_food/cart.dart';
 import 'package:selforder_food/hom3.dart';
-import 'package:selforder_food/home.dart';
-import 'package:selforder_food/home2.dart';
 import 'package:selforder_food/profile.dart';
+import 'package:selforder_food/provider/cartprovider.dart';
+import 'package:selforder_food/provider/profileprovider.dart';
 import 'package:sweet_nav_bar/sweet_nav_bar.dart';
 
 import 'login.dart';
@@ -19,6 +20,14 @@ class _BottomNavState extends State<BottomNav> {
   @override
   int mainindex = 0;
   List pages = [Home3(),Cart(),Profile()];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<Profileprovider>(context,listen: false).userCrenditails();
+
+
+  }
 
 
   Widget build(BuildContext context) {

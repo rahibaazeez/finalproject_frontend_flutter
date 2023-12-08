@@ -16,10 +16,10 @@ class SingleviewNav extends StatefulWidget {
 class _SingleviewNavState extends State<SingleviewNav> {
   orDer({required fid,required id})async{
     var data={"f_id":fid,"id":id,"date":DateTime.now().toString()};
- Response response=await   post(Uri.parse("http://192.168.98.135/php/self_order/API/order_api.php"),body: data);
+ Response response=await   post(Uri.parse("http://192.168.173.135/php/self_order/API/order_api.php"),body: data);
  print(response.body);
  if(response.statusCode==200){
-   print(response.body);
+
  }
   }
   var id;
@@ -29,7 +29,7 @@ class _SingleviewNavState extends State<SingleviewNav> {
     setState(() {
       id = result.toString();
     });
-    print("dat2 is ${id}");
+
   }
   @override
   void initState() {

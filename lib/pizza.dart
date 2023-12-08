@@ -3,27 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:selforder_food/ipdata.dart';
+import 'package:selforder_food/provider/homeprovider.dart';
 import 'package:selforder_food/singleview.dart';
 
-class Pizza extends StatefulWidget {
+class Pizza extends StatelessWidget {
   const Pizza({Key? key}) : super(key: key);
 
-  @override
-  State<Pizza> createState() => _PizzaState();
-}
-
-class _PizzaState extends State<Pizza> {
-  Future<dynamic> pizzaView()async{
-    Response response=await get(Uri.parse("http://192.168.98.135/php/self_order/API/pizza_view_api.php"));
-    if(response.statusCode == 200){
-      var data=jsonDecode(response.body);
-      var result= data;
-      print(result);
-      return result;
-     
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +18,7 @@ class _PizzaState extends State<Pizza> {
 
 
       body: FutureBuilder(
-          future: pizzaView(),
+          future:  Provider.of<Homeprovider>(context,listen: false).pizzaView(),
           builder: (context,AsyncSnapshot snapshot) {
             if(snapshot.connectionState==ConnectionState.waiting){
               return Center(

@@ -1,32 +1,48 @@
-import 'dart:js';
+
+
+
+
+
+
+
+
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selforder_food/BottomNav.dart';
 import 'package:selforder_food/pizza.dart';
 import 'package:selforder_food/profile.dart';
+import 'package:selforder_food/provider/cartprovider.dart';
+import 'package:selforder_food/provider/feedbackprovider.dart';
+import 'package:selforder_food/provider/homeprovider.dart';
+import 'package:selforder_food/provider/loginprovider.dart';
 import 'package:selforder_food/provider/profileprovider.dart';
+import 'package:selforder_food/provider/registerprovider.dart';
+import 'package:selforder_food/provider/searchresultprovider.dart';
+import 'package:selforder_food/provider/singleviewprovider.dart';
+import 'package:selforder_food/provider/splascreenprovider.dart';
+import 'package:selforder_food/search.dart';
 import 'package:selforder_food/signup.dart';
 import 'package:selforder_food/singleview.dart';
 import 'package:selforder_food/splashescreen.dart';
-import 'package:selforder_food/welcome.dart';
-
 import 'MyWidget/test.dart';
+import 'feedback.dart';
 import 'hom3.dart';
-import 'home.dart';
-import 'home2.dart';
 import 'login.dart';
 
-void main() {
+void main() async{
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context)=>Profileprovider())
+      ChangeNotifierProvider(create: (context)=>Profileprovider()),
+      ChangeNotifierProvider(create: (context)=>Feedbackprovider()),
+      ChangeNotifierProvider(create: (context)=>Cartprovider()),
+      ChangeNotifierProvider(create: (context)=>Homeprovider()),
+      ChangeNotifierProvider(create: (context)=>Loginprovider()),
+      ChangeNotifierProvider(create: (context)=>Splashscreenprovider()),
+      ChangeNotifierProvider(create: (context)=>Signupprovider()),
+      ChangeNotifierProvider(create: (context)=>Singleviewprovider()),
+      ChangeNotifierProvider(create: (context)=>Searchresultprovider()),
     ],
-      
-      
-      
-      
-      
       child: const MyApp()));
 }
 
