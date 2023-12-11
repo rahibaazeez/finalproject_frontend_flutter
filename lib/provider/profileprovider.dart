@@ -2,16 +2,16 @@ import 'dart:convert';
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
  class Profileprovider extends ChangeNotifier{
-  var data;
+
   var img ;
-  String? user_id;
+  String? userId;
   Future getUser(BuildContext context) async {
-    var user = {"id":user_id.toString()};
+
+    var user = {"id":userId.toString()};
     try {
       Response response = await post(
           Uri.parse("http://192.168.173.135/php/self_order/API/view_user_api.php"),
@@ -22,13 +22,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
         if (data1 != null && data1["data"] != null) {
 
-          img = data1["data"]["Photo"];
-            data = data1;
+            img = data1["data"]["Photo"];
+          var  data = data1;
 
           return data;
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(""),
 
             ),
@@ -36,16 +36,15 @@ import 'package:shared_preferences/shared_preferences.dart';
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text("Failed to load user data"),
             backgroundColor: Colors.red,
           ),
         );
       }
     } catch (error) {
-      print("Error: $error");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text("An error occurred"),
           backgroundColor: Colors.red,
         ),
@@ -56,9 +55,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
   Future userCrenditails()async{
     SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-    var result=await sharedPreferences.getInt("user");
+    var result= sharedPreferences.getInt("user");
 
-      user_id=result.toString();
+      userId=result.toString();
     notifyListeners();
   }
 }

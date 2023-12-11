@@ -1,11 +1,10 @@
-import 'dart:convert';
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
+
 import 'package:provider/provider.dart';
+import 'package:selforder_food/provider/loginprovider.dart';
 import 'package:selforder_food/provider/registerprovider.dart';
 
 import 'login.dart';
@@ -16,13 +15,12 @@ class Signup extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    //Provider.of<Signupprovider>(context,listen: false).addUser(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-          backgroundColor: Color(0xFF232227),
+          backgroundColor: const Color(0xFF232227),
           // appBar: AppBar(
           //   backgroundColor: Colors.blue,
           //   title: Text("Login"),
@@ -46,14 +44,14 @@ class Signup extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
+                        const Text(
                           "Create your new account",
                           style: TextStyle(
                               fontSize: 35,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF232227)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         Stack(
@@ -62,7 +60,7 @@ class Signup extends StatelessWidget {
                                 ? Container(
                                     height: 100,
                                     width: 100,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: Color(0xFF232227),
                                         shape: BoxShape.circle),
                                   )
@@ -87,13 +85,13 @@ class Signup extends StatelessWidget {
                                     onPressed: () {
                                       Provider.of<Signupprovider>(context,listen: false).selectCameraorGallery(context);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.add_a_photo,
                                       color: Colors.white,
                                     )))
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         SizedBox(
@@ -105,9 +103,10 @@ class Signup extends StatelessWidget {
                               if (value!.isEmpty) {
                                 return "please enter your first name";
                               }
+                              return null;
                             },
 
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text(
                                 "Enter your name",
                                 style:
@@ -117,7 +116,7 @@ class Signup extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         SizedBox(
@@ -127,16 +126,17 @@ class Signup extends StatelessWidget {
                             controller: Provider.of<Signupprovider>(context,listen: false).email,
                             keyboardType: TextInputType.emailAddress,
                             validator: (value) {
-                              final RegExp _emailRegex =
+                              final RegExp emailRegex =
                               RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
                               if (value!.isEmpty) {
                                 return "please enter your email";
-                              } else if (!_emailRegex.hasMatch(value)) {
+                              } else if (!emailRegex.hasMatch(value)) {
                                 return "Enter a valid email";
                               }
+                              return null;
                             },
 
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 label: Text(
                                   "Enter your Email ",
                                   style: TextStyle(
@@ -145,7 +145,7 @@ class Signup extends StatelessWidget {
                                 border: OutlineInputBorder()),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         SizedBox(
@@ -160,29 +160,27 @@ class Signup extends StatelessWidget {
                               } else if (value.length < 6) {
                                 return "Enter a value of length 6";
                               }
+                              return null;
                             },
 
                             decoration: InputDecoration(
                                 suffixIcon: IconButton(
                                   onPressed: () {
 
-                                      Provider.of<Signupprovider>(context,listen: false).secure = !Provider.of<Signupprovider>(context,listen: false).secure;
+                                      Provider.of<Loginprovider>(context,listen: false).security();
 
                                   },
-                                  icon: Icon(
-                                    Icons.remove_red_eye_outlined,
-                                    color: Colors.white,
-                                  ),
+                                  icon: Provider.of<Loginprovider>(context,listen: false).secure==false?const Icon(Icons.visibility,color: Colors.white,):const Icon(Icons.visibility_off)
                                 ),
-                                label: Text(
+                                label: const Text(
                                   "Enter your password",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18),
                                 ),
-                                border: OutlineInputBorder()),
+                                border: const OutlineInputBorder()),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         SizedBox(
@@ -197,9 +195,10 @@ class Signup extends StatelessWidget {
                               } else if (value.length < 10 && value.length > 10) {
                                 return "please enter a valid number";
                               }
+                              return null;
                             },
 
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 label: Text(
                                   "Enter your Phonenumber",
                                   style: TextStyle(
@@ -208,7 +207,7 @@ class Signup extends StatelessWidget {
                                 border: OutlineInputBorder()),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         ElevatedButton(
@@ -218,17 +217,17 @@ class Signup extends StatelessWidget {
                                 Provider.of<Signupprovider>(context,listen: false).addUser(context);
                               }else{
                                 ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(content: Text("no data")));
+                                    .showSnackBar(const SnackBar(content: Text("no data")));
                               }
-                            },style:ElevatedButton.styleFrom(backgroundColor: Color(0xFF232227),side: BorderSide.none,shape: const StadiumBorder()),
-                            child: Text("Sign In")),
-                        SizedBox(
+                            },style:ElevatedButton.styleFrom(backgroundColor: const Color(0xFF232227),side: BorderSide.none,shape: const StadiumBorder()),
+                            child: const Text("Sign In")),
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "Already have an account ?",
                               style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
@@ -236,10 +235,10 @@ class Signup extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.of(context)
                                       .pushReplacement(MaterialPageRoute(
-                                    builder: (context) => Login(),
+                                    builder: (context) => const Login(),
                                   ));
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Login",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 17),

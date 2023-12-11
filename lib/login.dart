@@ -1,14 +1,14 @@
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+
 import 'package:provider/provider.dart';
-import 'package:selforder_food/hom3.dart';
+
 import 'package:selforder_food/provider/loginprovider.dart';
 import 'package:selforder_food/signup.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'BottomNav.dart';
+
+
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -46,8 +46,8 @@ class Login extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Login", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Color(0xFF232227)),),
-                    SizedBox(height: 50,),
+                    const Text("Login", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Color(0xFF232227)),),
+                    const SizedBox(height: 50,),
                     SizedBox(
                       height: 50,
                       width: 300,
@@ -55,22 +55,23 @@ class Login extends StatelessWidget {
                         controller: Provider.of<Loginprovider>(context,listen: false).email,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
-                          final RegExp _emailRegex =
+                          final RegExp emailRegex =
                           RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
                           if (value!.isEmpty) {
                             return "please enter your email";
-                          } else if (!_emailRegex.hasMatch(value)) {
+                          } else if (!emailRegex.hasMatch(value)) {
                             return "Enter a valid email";
                           }
+                          return null;
                         },
 
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text("Email",style: TextStyle(fontSize: 18,color: Colors.white),),
                           border: OutlineInputBorder()
                         ),
                       ),
                     ),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
                     SizedBox(
                       height: 50,
                       width: 300,
@@ -83,20 +84,21 @@ class Login extends StatelessWidget {
                           } else if (value.length < 6) {
                             return "Enter a value of length 6";
                           }
+                          return null;
                         },
 
                         decoration: InputDecoration(
                           suffixIcon: IconButton(onPressed: (){
 
-                              Provider.of<Loginprovider>(context,listen: false).secure=!Provider.of<Loginprovider>(context,listen: false).secure;
+                              Provider.of<Loginprovider>(context,listen: false).security();
 
-                          },icon:Provider.of<Loginprovider>(context,listen: false).secure?Icon(Icons.visibility_off,color: Colors.white,):Icon(Icons.visibility)),
-                          label: Text("Password",style: TextStyle(color: Colors.white,fontSize: 18),),
-                          border: OutlineInputBorder()
+                          },icon:Provider.of<Loginprovider>(context,listen: false).secure==false?const Icon(Icons.visibility,color: Colors.white,):const Icon(Icons.visibility_off)),
+                          label: const Text("Password",style: TextStyle(color: Colors.white,fontSize: 18),),
+                          border: const OutlineInputBorder()
                         ),
                       ),
                     ),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
                     ElevatedButton(onPressed: (){
                       bool validator=Provider.of<Loginprovider>(context,listen: false).formkey.currentState!.validate();
                       if(validator==true) {
@@ -104,16 +106,16 @@ class Login extends StatelessWidget {
                       }
                       Provider.of< Loginprovider>(context,listen: false).clear();
                     },
-                        style:ElevatedButton.styleFrom(backgroundColor: Color(0xFF232227),side: BorderSide.none,shape: const StadiumBorder()),
-                        child: Text("Login",style: TextStyle(color: Colors.white,fontSize: 18),)),
-                    SizedBox(height: 20,),
+                        style:ElevatedButton.styleFrom(backgroundColor: const Color(0xFF232227),side: BorderSide.none,shape: const StadiumBorder()),
+                        child: const Text("Login",style: TextStyle(color: Colors.white,fontSize: 18),)),
+                    const SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Do you have an account?",style: TextStyle(color: Colors.white,fontSize: 18),),
+                        const Text("Do you have an account?",style: TextStyle(color: Colors.white,fontSize: 18),),
                         TextButton(onPressed: (){
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Signup(),));
-                        }, child: Text("Sign Up",style: TextStyle(color: Colors.white,fontSize: 18),))
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Signup(),));
+                        }, child: const Text("Sign Up",style: TextStyle(color: Colors.white,fontSize: 18),))
                       ],
                     )
 

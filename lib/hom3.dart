@@ -1,8 +1,8 @@
-import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+
 import 'package:provider/provider.dart';
 import 'package:selforder_food/MyWidget/test.dart';
 import 'package:selforder_food/burger.dart';
@@ -12,11 +12,11 @@ import 'package:selforder_food/ipdata.dart';
 import 'package:selforder_food/pizza.dart';
 import 'package:selforder_food/profile.dart';
 import 'package:selforder_food/provider/homeprovider.dart';
-import 'package:selforder_food/provider/loginprovider.dart';
+
 import 'package:selforder_food/provider/profileprovider.dart';
 import 'package:selforder_food/search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'MyWidget/new_widget.dart';
+
 import 'cart.dart';
 import 'login.dart';
 
@@ -36,16 +36,16 @@ class Home3 extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Search( )));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Search( )));
               },
-                child: Icon(Icons.search,)),
+                child: const Icon(Icons.search,)),
           )],
 
           backgroundColor: Colors.orangeAccent,
         ),
         drawer: Drawer(
           shadowColor: Colors.blue,
-          backgroundColor: Color(0xFF232227),
+          backgroundColor: const Color(0xFF232227),
           child: Column(
             children: [
               DrawerHeader(
@@ -68,14 +68,14 @@ class Home3 extends StatelessWidget {
                 child: ListTile(
                   onTap: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => Home3(),
+                      builder: (context) => const Home3(),
                     ));
                   },
-                  title: Text("Home"),
-                  leading: Icon(Icons.home),
+                  title: const Text("Home"),
+                  leading: const Icon(Icons.home),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Card(
@@ -83,18 +83,18 @@ class Home3 extends StatelessWidget {
                 child: ListTile(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Cart(),
+                      builder: (context) => const Cart(),
                     ));
                   },
-                  title: Text("History"),
-                  leading: Icon(Icons.group),
+                  title: const Text("History"),
+                  leading: const Icon(Icons.group),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Card(
@@ -102,14 +102,14 @@ class Home3 extends StatelessWidget {
                 child: ListTile(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Profile(),
+                      builder: (context) => const Profile(),
                     ));
                   },
-                  title: Text("Profile"),
-                  leading: Icon(Icons.account_circle),
+                  title: const Text("Profile"),
+                  leading: const Icon(Icons.account_circle),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Card(
@@ -120,11 +120,11 @@ class Home3 extends StatelessWidget {
                       builder: (context) => FeedBack(),
                     ));
                   },
-                  title: Text("Feedback"),
-                  leading: Icon(Icons.feedback),
+                  title: const Text("Feedback"),
+                  leading: const Icon(Icons.feedback),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Card(
@@ -134,18 +134,18 @@ class Home3 extends StatelessWidget {
                     SharedPreferences sharedpreferences=await SharedPreferences.getInstance();
                     sharedpreferences.setBool('u_log', false);
 
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Login(),));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Login(),));
                   },
-                  title: Text("Logout"),
-                  leading: Icon(Icons.logout),
+                  title: const Text("Logout"),
+                  leading: const Icon(Icons.logout),
                 ),
               )
             ],
           ),
         ),
-          backgroundColor: Color(0xFF232227),
+          backgroundColor: const Color(0xFF232227),
 
-          body: SafeArea(
+          body: const SafeArea(
 
             child: Padding(
               padding: EdgeInsets.only(top: 25),

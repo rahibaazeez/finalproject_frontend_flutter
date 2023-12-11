@@ -1,13 +1,11 @@
-import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:selforder_food/ipdata.dart';
 import 'package:selforder_food/modelclass/orderviewmodelclass.dart';
 import 'package:selforder_food/provider/cartprovider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);
@@ -18,22 +16,22 @@ class Cart extends StatelessWidget {
     Provider.of<Cartprovider>(context,listen: false).cartList();
 
     return Scaffold(
-      backgroundColor: Color(0xFF232227),
+      backgroundColor: const Color(0xFF232227),
       appBar: AppBar(
-        backgroundColor: Color(0xFF232227),
-        title: Text("Cart",style: TextStyle(color: Colors.orangeAccent,fontSize: 25),),
+        backgroundColor: const Color(0xFF232227),
+        title: const Text("Cart",style: TextStyle(color: Colors.orangeAccent,fontSize: 25),),
       ),
       body:
       FutureBuilder<Orderviewmodelclass>(
           future:  Provider.of<Cartprovider>(context,listen: false).cartList(),
           builder: (context, AsyncSnapshot<Orderviewmodelclass> snapshot) {
             if(snapshot.connectionState==ConnectionState.waiting){
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }if(snapshot.hasData){
               if(snapshot.data!.data==null){
-                return Center(child: Text("No data"),);
+                return const Center(child: Text("No data"),);
               }
               return ListView.builder(
 
@@ -57,18 +55,18 @@ class Cart extends StatelessWidget {
 
                         trailing: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.black
+                            backgroundColor: Colors.black
                           ),
 
                           onPressed: (){
                           Provider.of<Cartprovider>(context,listen: false).removeOrder(id:snapshot.data!.data![index].orderId);
-                         },child:Text("Remove",style: TextStyle(color: Colors.orangeAccent),),),
+                         },child:const Text("Remove",style: TextStyle(color: Colors.orangeAccent),),),
                       ),
                     );
                   }
               );
             }else{
-              return Center(
+              return const Center(
                 child:Text("Something went wrong") ,
               );
             }

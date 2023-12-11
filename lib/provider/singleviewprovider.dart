@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:selforder_food/modelclass/singleviewmodelclass.dart';
 
 class Singleviewprovider extends ChangeNotifier{
-  var food_id;
+  var foodId;
   String? price;
   var result;
 

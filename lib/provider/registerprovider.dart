@@ -1,6 +1,6 @@
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,8 +9,7 @@ import 'package:http/http.dart' as http;
 import '../login.dart';
 
 class Signupprovider extends ChangeNotifier{
-  @override
-  bool secure = false;
+  bool secure = true;
   XFile? image;
 
   pickImageFromgallery() async {
@@ -50,10 +49,9 @@ class Signupprovider extends ChangeNotifier{
       request.files.add(pic);
       var response=await request.send();
       if(response.statusCode==200){
-        print("Sucess");
         Fluttertoast.showToast(msg: "Registerd");
 
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Login()));
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Login()));
 
 
       }else{
@@ -65,7 +63,7 @@ class Signupprovider extends ChangeNotifier{
   void selectCameraorGallery(context) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => Container(
+      builder: (context) => SizedBox(
         height: 200,
         child: Row(
           children: [
@@ -79,11 +77,11 @@ class Signupprovider extends ChangeNotifier{
                           Navigator.of(context).pop()
                           ;
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.camera_alt,
                           size: 40,
                         )),
-                    Text("Camera")
+                    const Text("Camera")
                   ],
                 )),
             Expanded(
@@ -95,11 +93,11 @@ class Signupprovider extends ChangeNotifier{
                           pickImageFromgallery();
                           Navigator.of(context).pop();
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.file_copy,
                           size: 40,
                         )),
-                    Text("Gallery")
+                    const Text("Gallery")
                   ],
                 ))
           ],

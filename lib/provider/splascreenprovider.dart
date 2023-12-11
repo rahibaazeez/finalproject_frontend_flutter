@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,10 +11,10 @@ class Splashscreenprovider extends ChangeNotifier{
     SharedPreferences pref = await SharedPreferences.getInstance();
     final userLoginCred = pref.getBool('u_log');
     if(userLoginCred ==true){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNav(),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BottomNav(),));
       Fluttertoast.showToast(msg: "Come on lets try it");
     }else{
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login(),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login(),));
       Fluttertoast.showToast(msg: "Please login");
     }
     notifyListeners();

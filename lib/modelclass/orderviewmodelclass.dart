@@ -7,13 +7,13 @@ class Orderviewmodelclass {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -39,12 +39,12 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['food_name'] = this.foodName;
-    data['price'] = this.price;
-    data['photo'] = this.photo;
-    data['order_date'] = this.orderDate;
-    data['order_id'] = this.orderId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['food_name'] = foodName;
+    data['price'] = price;
+    data['photo'] = photo;
+    data['order_date'] = orderDate;
+    data['order_id'] = orderId;
     return data;
   }
 }

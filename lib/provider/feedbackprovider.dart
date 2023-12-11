@@ -5,10 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Feedbackprovider extends ChangeNotifier{
 
-  var user_id;
+  var userId;
   Future feedBack({required feedback, required id}) async {
     var data = {
-      "id": user_id,
+      "id": userId,
       "feedback": feedback,
       "initial_date": DateTime.now().toString()
     };
@@ -24,8 +24,8 @@ class Feedbackprovider extends ChangeNotifier{
 
   Future userCrenditails() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var result = await sharedPreferences.getInt("user");
-      user_id = result.toString();
+    var result =  sharedPreferences.getInt("user");
+      userId = result.toString();
       notifyListeners();
 
   }

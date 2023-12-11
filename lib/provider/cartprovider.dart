@@ -23,7 +23,7 @@ result=Orderviewmodelclass.fromJson(jsonDecode(response.body));
 
   Future userCrenditails() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var result = await sharedPreferences.getInt("user");
+    var result =  sharedPreferences.getInt("user");
 
       id = result.toString();
       notifyListeners();

@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:selforder_food/modelclass/searchresultmodelclass.dart';
 
 class Searchresultprovider extends ChangeNotifier{
-  var food_id;
+  var foodId;
   String? price;
   var result;
 

@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:provider/provider.dart';
 import 'package:selforder_food/ipdata.dart';
-import 'package:selforder_food/provider/homeprovider.dart';
-import 'package:selforder_food/provider/singleviewprovider.dart';
 import 'package:selforder_food/searchresult.dart';
 
 class Search extends StatefulWidget {
@@ -33,7 +30,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("Search"),
+        title: const Text("Search"),
         backgroundColor:Colors.orangeAccent,
       ),
       body: ListView(
@@ -47,8 +44,8 @@ class _SearchState extends State<Search> {
                 });
                 searchValue=searchdata.text;
 
-              },icon: Icon(Icons.search_off),),
-              border: OutlineInputBorder()
+              },icon: const Icon(Icons.search_off),),
+              border: const OutlineInputBorder()
             ),
           ),
    SizedBox(
@@ -59,7 +56,7 @@ class _SearchState extends State<Search> {
 
                 if(snapshot.hasData){
                   if(snapshot.data["data"]==null){
-                    return Center(
+                    return const Center(
                       child: Text("no data"),
                     );
                   }else{
@@ -71,7 +68,7 @@ class _SearchState extends State<Search> {
 
                           },
                           child: ListTile(onTap: (){
-                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Searchresult(food_id: snapshot.data["data"][index]["food_id"].toString(), price: snapshot.data["data"][index]["price"].toString())));
+                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Searchresult(foodId: snapshot.data["data"][index]["food_id"].toString(), price: snapshot.data["data"][index]["price"].toString())));
 
                           },
                             leading: Container(
@@ -88,14 +85,14 @@ class _SearchState extends State<Search> {
                             ),
                             title: Text(snapshot.data["data"][index]["food_name"]),
                             subtitle: Text(snapshot.data["data"][index]["price"]),
-                            trailing: Icon(Icons.more_vert_outlined),
+
                           ),
                         );
                       }
                   );
 
                 }}else{
-                  return Center(
+                  return const Center(
                     child: Text("no data"),
                   );
                 }

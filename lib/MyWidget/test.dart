@@ -1,10 +1,8 @@
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-import 'package:selforder_food/cart.dart';
 import 'package:selforder_food/ipdata.dart';
 import 'package:selforder_food/modelclass/viewfoodmodel.dart';
 import 'package:selforder_food/provider/homeprovider.dart';
@@ -24,12 +22,12 @@ class _GdTestState extends State<GdTest> {
   Widget build(BuildContext context) {
     Provider.of<Homeprovider>(context,listen: false).getData();
     return Scaffold(
-      backgroundColor: Color(0xFF232227),
+      backgroundColor: const Color(0xFF232227),
       body: FutureBuilder<FoodviewModel>(
         future: Provider.of<Homeprovider>(context,listen: false).getData(),
 
        builder: (BuildContext context, AsyncSnapshot<FoodviewModel> snapshot) {  if(snapshot.connectionState==ConnectionState.waiting){
-         return Center(
+         return const Center(
            child: CircularProgressIndicator(),
          );
        }
@@ -37,14 +35,14 @@ class _GdTestState extends State<GdTest> {
        if(snapshot.hasData){
          return GridView.builder(
            itemCount: snapshot.data!.data!.length,
-           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2 ),
+           gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2 ),
            itemBuilder: (context, index) {
              return Container(
-               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-               margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(20),
-                   color: Color(0xFF232227),
+                   color: const Color(0xFF232227),
                    boxShadow: [
                      BoxShadow(
                        color: Colors.black.withOpacity(0.4),
@@ -57,7 +55,7 @@ class _GdTestState extends State<GdTest> {
                    InkWell(
                      onTap: () {
                        Navigator.of(context).push(MaterialPageRoute(
-                         builder: (context) => Singleitemview(food_id: snapshot.data!.data![index].foodId.toString(), price: snapshot.data!.data![index].price.toString(),),
+                         builder: (context) => Singleitemview(foodId: snapshot.data!.data![index].foodId.toString(), price: snapshot.data!.data![index].price.toString(),),
                        ));
                      },
                      child: Container(
@@ -88,7 +86,7 @@ class _GdTestState extends State<GdTest> {
 
            },);
        }else{
-         return Center(
+         return const Center(
            child: Text("Something wrong"),
          ); }}
       ),

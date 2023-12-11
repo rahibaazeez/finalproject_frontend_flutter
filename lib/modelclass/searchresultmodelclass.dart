@@ -7,13 +7,13 @@ class Searchresultmodelclass {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -50,14 +50,14 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['food_id'] = this.foodId;
-    data['photo'] = this.photo;
-    data['food_name'] = this.foodName;
-    data['category'] = this.category;
-    data['ingredients'] = this.ingredients;
-    data['preparationtime'] = this.preparationtime;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['food_id'] = foodId;
+    data['photo'] = photo;
+    data['food_name'] = foodName;
+    data['category'] = category;
+    data['ingredients'] = ingredients;
+    data['preparationtime'] = preparationtime;
+    data['price'] = price;
     return data;
   }
 }

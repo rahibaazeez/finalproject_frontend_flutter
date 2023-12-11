@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
@@ -33,7 +30,7 @@ class Loginprovider extends ChangeNotifier{
         id = int.parse(result["data"]["id"]);
         userCrenditails();
         Fluttertoast.showToast(msg: "Welcome");
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => BottomNav(),));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=> const BottomNav()));
       }
     }
     notifyListeners();
@@ -43,6 +40,10 @@ class Loginprovider extends ChangeNotifier{
     sharedPreferences.setInt("user", id);
     sharedPreferences.setBool('u_log', true);
     notifyListeners();
+  }
+  void security(){
+    secure=!secure;
+
   }
   void clear(){
     email.clear();
